@@ -1,5 +1,7 @@
 package java_sudoku_solver;
 
+import java.awt.Image;
+
 public class sudoku_solver {
 
 	public static void main(String[] args) {
