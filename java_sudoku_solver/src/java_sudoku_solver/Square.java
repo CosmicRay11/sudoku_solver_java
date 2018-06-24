@@ -43,7 +43,7 @@ public final class Square{
 				}
 			}
 		}
-		// only used to stop eclipse throwing its toys out the pram complaining there's no return int statement
+		//only used to stop eclipse throwing its toys out the pram complaining there's no return int statement
 	    return 0;
 	}
 	
