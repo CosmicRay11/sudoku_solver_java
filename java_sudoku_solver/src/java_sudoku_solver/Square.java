@@ -18,6 +18,19 @@ public final class Square{
             possibilities[i] = true;	
 	}
 	
+	public void set_value(int value) {
+		if (value <= 9 && value >=1) {
+			for (int i=0;i<=8;i++) {
+				if (i != value-1) {
+					possibilities[i] = false;
+				}
+				else {
+					possibilities[i] = true;
+				}
+			}
+		}
+	}
+	
 	public int count_possibilities () {
 		int totalPos = 0;
         for (int i = 0; i <= 8; i++)
