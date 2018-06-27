@@ -1,7 +1,9 @@
 package java_sudoku_solver;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /*
  sudoku - an array of 9 strings of length 9, with the numbers 1-9 specifying
@@ -20,6 +22,7 @@ public final class Grid {
 	public Grid(String[] sudoku) {
 		original = sudoku;
 		gridList = construct_gridList(sudoku);
+		System.out.println(get_impactArray(0,0).length);
 	}
 	
 	private Square[][] construct_gridList(String[] sudoku) {
@@ -96,7 +99,48 @@ public final class Grid {
 		}
 		return colArray;
 	}
+	
+	private int[][] get_impactArray(int x, int y) {
+		int[][] box = get_box(x,y);
+		int[][] col = get_col(y);
+		int[][] row = get_row(x);
+		Set<int[]> impactSet = make_set(box);
+		System.out.println(impactSet.size());
+		Set<int[]> rowSet = make_set(row);
+		Set<int[]> colSet = make_set(col);
+		impactSet.addAll(rowSet);
+		impactSet.addAll(colSet);
+		int[] current = {x,y};
+		System.out.println(impactSet.size());
+		impactSet.remove(current);
+		System.out.println(impactSet.size());
+		System.out.println(impactSet.remove(current));
+		int[][] impactArray = impactSet.toArray(new int[impactSet.size()][]);
+		System.out.println(impactSet);
+		print_nested(impactArray);
+		return impactArray;
+		
+	}
+	
+	private Set<int[]> make_set (int[][] array) {
+		Set<int[]> set = new HashSet<int[]>();
+		for (int i=0;i<array.length;i++) {
+			set.add(array[i]);
+		}
+		return set;
+	}
 
+	private void print_nested (int[][] array) {
+		for (int i=0;i<array.length;i++) {
+			for (int j=0; j<array[i].length;j++) {
+				System.out.print(array[i][j]);
+				if (j != array[i].length - 1) {
+					System.out.print(",");
+				}
+			}
+			System.out.println();
+		}
+	}
 	
 }
 	
