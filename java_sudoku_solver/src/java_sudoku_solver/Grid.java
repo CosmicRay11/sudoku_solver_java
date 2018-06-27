@@ -53,41 +53,50 @@ public final class Grid {
 		return progress;
 	}
 	
-	private List<int[]> get_box(int x, int y) {
+	private int[][] get_box(int x, int y) {
 		
-		List<int[]> boxList = new ArrayList<int[]>();
+		 int[][] boxArray = new int[9][2];
 
 		//java does integer division if the types of the operands are integer
 		int boxX = x / 3;
 		int boxY = y / 3;
+		System.out.println(boxX);
 		
+		int count = 0;
 		for (int i=boxX;i<=boxX+2;i++) {
 			for (int j=boxY;j<=boxY+2;j++) {
 				int[] intArray = {i,j};
-				boxList.add(intArray);
+				boxArray[count] = intArray;
+				count ++;
 			}
 		}
-		return boxList;
-	}
-	
-	private List<int[]> get_row(int x) {
-		List<int[]> rowList = new ArrayList<int[]>();
-		for (int j=0;j<=8;j++) {
-			int[] intArray = {x,j};
-			rowList.add(intArray);
+		/*
+		for (int i=0;i<=8;i++) {
+			System.out.print(boxArray[i][0]);
+			System.out.println(boxArray[i][1]);
 		}
-		return rowList;
+		*/
+		return boxArray;
 	}
 
-	private List<int[]> get_col(int y) {
-		List<int[]> colList = new ArrayList<int[]>();
+	private int[][] get_row(int x) {
+		int[][] rowArray = new int[9][2];
+		for (int j=0;j<=8;j++) {
+			int[] intArray = {x,j};
+			rowArray[j] = intArray;
+		}
+		return rowArray;
+	}
+
+	private int[][] get_col(int y) {
+		int[][] colArray = new int[9][2];
 		for (int i=0;i<=8;i++) {
 			int[] intArray = {i,y};
-			colList.add(intArray);
+			colArray[i] = intArray;
 		}
-		return colList;
+		return colArray;
 	}
-	
+
 	
 }
 	
